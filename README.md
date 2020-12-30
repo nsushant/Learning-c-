@@ -1,4 +1,4 @@
-# Learning-c-
+# Learning-c-plus-plus
 ### Datatypes in c++
 
 1. Characters : One element of plain text ⇒ chars alphabet = 'A';
