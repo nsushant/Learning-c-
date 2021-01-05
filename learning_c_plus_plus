@@ -1,0 +1,433 @@
+```cpp
+#include <iostream>
+
+  int main() 
+ {
+      std::cout << "Hello world, I am ready for C++";
+      return 0;
+  }
+```
+
+Any line that starts with a '#' is a preprocessor directive. Thus, consider the first line of the above snippet.
+
+  
+
+```cpp
+#include <iostream>
+```
+
+The line states that the preprocessor directive used is include. This directive adds the directives in the library that follows it. In this case the library is 'iostream'. The brackets ' <> '  tell the program to look for the stated library in the directory where all standard libraries are stored.  <iostream> replaced with " iostream" would cause the program to look for the library only in the stated directory.
+
+```cpp
+int main()
+{
+		return 0;
+}
+```
+
+The main function returns an 'int'. The curly brackets {} denote the start and the end of the main function. We return '0' at the end of the function to ensure the program has run without any errors. ';' is the end of the command.
+
+```cpp
+ std::cout<<"string";
+```
+
+The 'cout' command used above is equivalent to the 'print' command in python and is used to write to the console, similarly the cin command is used to get input from the user or read from the console. 'std' is the name of the library it is stored in, the 'standard' library. Thus,  format 'library: :command<<value'.
+
+```cpp
+//print year 
+std::cout<<year
+//get input from user and store it in the variable year. 
+std::cin >>year 
+```
+
+Shown below is an example of how cin could be used to get user input.
+
+```cpp
+int main()
+{
+    int year = 0;
+    int age = 0;
+    std::string name = " ";
+    //print a message to the user
+    std::cout<<"What year is your favorite? ";
+    
+    //get the user response and assign it to the variable year
+    std::cin >> year;
+    
+    //output response to user
+    std::cout<<"How interesting, your favorite year is "<<year<<"!\n";
+    
+    return 0;
+}
+```
+
+Cin will not do well when strings are returned as input. Instead it will see the space as the end of the string. 
+
+ You add comments as shown below.
+
+```cpp
+//for an inline comment 
+/* comment block */
+```
+
+When creating variables in C++ the format used is "type name = value;". The following snippet shows that the variable when called in the output, the value of the variable is printed. The <<"string"<< variable causes the string to be printed following the value of the named variable.
+
+"\n" adds a newline.
+
+ 
+
+```cpp
+int variableName = 32;
+std::cout<<"The value of the interger is "<<variableName "\n";
+const int variableName = 21;
+```
+
+If the variable is assigned as a 'const' its value will not change for the life of the program.
+
+ 
+
+To determine the number of bytes used by a certain variable. The 'sizeof(variable type)' can be used.
+
+```cpp
+/*cout now prints the string followed by the number of bytes used by the variable type
+and a new line*/
+
+cout<<"int size = "<<sizeof(int)<<"\n";
+```
+
+To create a type that can take a finite number of values C++, you assign the type enum to it.
+
+```cpp
+// example
+enum MONTHS {Jan, Feb, Mar, Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec};
+//create a variable of the type MONTHS
+MONTHS var;
+//assign it one of its possible values
+var= Jan;
+```
+
+Using the <iomanip> library, the appearance of the output may be altered. For example the width.
+
+```cpp
+#include <iomanip>
+
+int main ()
+{
+		// stew(value) assigns the width to the output.  
+		std::cout<<"Ints"<<std::setw(15)<<"Floats"<<std::setw(15)<<"Doubles"<< "\n";
+		// /t is the tab operator and vreates a tab space between outputs.
+		std::cout<<"Ints\t"<<"Floats\t"<<"Doubles"<< "\n";
+		return 0;		
+}
+```
+
+### Reading & Writing Files
+
+1. Include the <fstream> library.
+2. Create a stream, stream() with three choices inputs, outputs and both.
+3. To write to a file, create an output stream ofstream name_of_stream. To read a file, create an input stream ifstream name_of_stream. Both ofstream and ifstream refer to what the program is doing not what the file is doing. The fstream name_of_stream can be used to both read and write to a file.
+4. To open the file, name_of_stream.open("filename").If the file does not exist, the program will create it. 
+5. write or read the file.
+6. close the file with name_of_stream.close(). 
+
+Consider the following snippet of code. 
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main () {
+    string line;
+		//writing to a file
+    //create an output stream to write to the file
+    ofstream myfileI ("input.txt", ios::app); 
+		//check if the file is open.
+    if (myfileI.is_open())
+		//append the new lines to the end of the file
+    {
+        myfileI << "\nI am adding a line.\n";
+        myfileI << "I am adding another line.\n";
+        myfileI.close();
+    }
+		// if the file is closed print string.
+    else cout << "Unable to open file for writing";
+	  
+
+		//reading a file.
+    //create an input stream to write to the file.
+    ifstream myfileO ("input.txt");
+		//check if file is open.
+    if (myfileO.is_open())
+		//start statement
+    {
+        while ( getline (myfileO,line) )
+				// start while loop, get every line until there aren't any. 
+        {// print line and add an empty space after every line.
+            cout << line << '\n';
+        }
+				//when you run out of lines, close the file. 
+        myfileO.close();
+    }
+    //if the file is
+    else cout << "Unable to open file for reading";
+    
+    return 0;
+}
+```
+
+### Header Files
+
+Additional libraries can be included in C++, we can also include our own libraries.
+
+These files are called header files and they have an .hpp extension. Although any extension will work.
+
+- Header files contain information about how to do a task.
+- The main program contains information about what to do
+
+The header is always stored in a local directory. So use #include "name of file.hpp"
+
+```cpp
+//main.hpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//used in a hello world program
+#include "main.hpp"
+
+int main()
+{
+    cout<<"Hello, I use header files!";
+    return 0;
+}
+
+```
+
+### Running and compiling
+
+To compile a program, you use g++ file_name.cpp -o name_of_executable. To execute the content inside the file, you use ./name_of_executable.
+
+### Strings and more
+
+we can use getline and streamstring to convert strings to other variable types.
+
+```cpp
+#include <sstream>
+
+int main()
+{
+		std::getline(std::cin, stringVariable);
+		std::stringstream(stringVariable) >> numericVariable;
+				
+}
+
+#example of usage
+
+#include <iostream>
+#include <string>
+#include <sstream>
+
+int main ()
+ {
+	   std::string stringLength;
+	   float inches = 0;
+	   float yardage = 0;
+
+	   std::cout << "Enter number of inches: ";
+		//get input as a string.
+	   std::getline (std::cin,stringLength);
+		//convert stringLength (string) to (numeric variable) inches.
+	   std::stringstream(stringLength) >> inches;
+	   std::cout<<"You entered "<<inches<<"\n";
+	   yardage = inches/36;
+	   std::cout << "Yardage is " << yardage;
+	   return 0;
+ }
+
+```
+
+### Compilation and Execution
+
+Useful commands:
+
+- pwd: print working directory
+- cd: change directory
+- ls: list the contents of the directory
+- CHDIR : change directory
+- DIR: print the files and folders in the working directory
+- CHDIR : change directory
+- DIR: print the files and folders in the working directory
+
+To compile and execute the script. 
+
+```cpp
+//To compile 
+g++ filename.cpp -o nameOfExecutableCode
+
+For example:
+        g++ assignment2.cpp -o a2
+
+//to execute
+./filename
+```
+
+ 
+
+### Arithmetic Operations
+
+Most commands are the same as any other language. However, when complex mathematical operations are to be performed the cmath library should be used. 
+
+```cpp
+// include the cmath function 
+#include <cmath>
+//functions used
+int main()
+{   // returns value 
+		std::pow(base,exponent);
+		//value of pi stored
+		M_PI = 3.14...;
+}
+```
+
+### Rational operators, Logical operators & conditionals
+
+```cpp
+//Rational operators
+A==B  negation A!=B
+A>B negation  A<B 
+A>=B negation A<=B
+
+//Logical operators
+AND == &&
+OR == ||
+NOT == ! == !(A||B) //is the negation of the OR condition
+
+//Conditionals
+
+if (boolean expression1)
+}
+		//statements to execute if the boolean statement is true.
+{
+
+else if (boolean expression2)
+{
+		//if boolean expression1 is false but boolean expression2 is True 
+}
+
+else
+{
+		//statements to execute if expressions 1,2 are false.
+}
+
+```
+
+Switch statements are a good substitute for the given case.
+
+```cpp
+switch(expression)
+{    //constant expression is the input expected
+     case constant-expression : statements;
+                               break; (this is optional);
+     case constant-expression : statements;
+                               break; (this is optional);
+     ...
+
+     default : //(optional) executed if input is none of the above
+        statements;
+}
+```
+
+If you do not add a break statement after each case, all cases that succeed the true case are executed. eg. if case 2 is True then case 2,3,4 are executed, if a break is present after case 2, only case 2 is executed.
+
+FOR loops 
+
+```cpp
+#include <iostream>
+
+int main()
+{   //for(initialization;condition;step)
+		// 'i' is incremented after every iteration. 
+    for(int i=0; i< 10;i++)
+    {
+        std::cout<<"i = "<<i<<"\n";
+    }
+    return 0;
+}
+
+//for(declaration:range)
+```
+
+While loops 
+
+```cpp
+//while loop, the conditions are checked before the loop is executed.
+while(condition)
+{
+     statements;
+}
+
+//do loop, the conditions are checked after the loop is executed.
+do
+{
+     statements;
+}while(condition );
+```
+
+### Pointer
+
+```cpp
+// this is an integer variable with value 54 stored in it.
+int a = 54; 
+
+// this variable 'a' is stored at a location &a.
+// The variable storing &a in it is called its pointer.It is of the type, type(a)*pointer
+int * pointerToa = &a;  
+
+// If we were to print pointerToa, we'd obtain the address of 'a':
+std::cout << "pointerToa points to address " << pointerToa << '\n';
+
+// If we want to know what is stored at the address stored by the pointer, 
+//we can dereference pointerToa by adding a * prefix to it:
+std::cout << "pointerToA stores value " << * pointerToA << '\n';
+```
+
+### Arrays
+
+For a type T, T[size] is the type ‘‘array having size number of elements of type T.’’ The elements are indexed from 0 to size−1. 
+
+For example:
+float v[3]; // an array of three floats: v[0], v[1], v[2]
+char∗ a[32]; // an array of 32 pointers to char: a[0] .. a[31]
+
+```cpp
+#include <iostream>
+#include <stdio.h>
+
+int main()
+	{  //creating array
+     int userInput[40];
+
+     //Enter the numbers into an array called userInput
+     for(int i = 0; i < 40; i++)
+     {   //append value to 
+         scanf("%d", &userInput[i]);
+     }
+     //print the array
+     std::cout<<"\nThe array\n";
+     for(int i = 0; i < 40; i++)
+     {
+         std::cout << userInput[i] <<" ";
+     }
+     //print the array in reverse order
+     std::cout<<"\n\nThe array in reverse order\n";
+     for(int i = 39; i >= 0; i--)
+     {
+         std::cout << userInput[i] <<" ";
+     }
+}
+```
+
+The above used method to append is not secure, by providing an input that overflows the input buffer the program could fail. Instead use x=putc(c,st) Write the character c to the output stream st;
