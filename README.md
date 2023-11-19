@@ -50,3 +50,9 @@ num of least value: fmin(num1,num2)
 2. for strings use getline(cin,variable);
 
 I was able to take a full c++ course at UCL, so I stopped adding code to this repo. Further projects can be found in repos containing my project code which will be created in the future. (subject to UCL's assesment guidlines) 
+
+## please look at https://closed-chime-955.notion.site/C-74600f17b8b5498e98591d6740f369e7 , this is a webpage that i will keep updating with more written material on C++.
+
+
+
+
