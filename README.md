@@ -49,4 +49,4 @@ num of least value: fmin(num1,num2)
 1. cin>>Variable;
 2. for strings use getline(cin,variable);
 
-I was able to take a full c++ course at UCL, so I stopped persuing this repo. Further projects can be found in repos containing my project code which will be created in the future. (subject to UCL's assesment guidlines) 
+I was able to take a full c++ course at UCL, so I stopped adding code to this repo. Further projects can be found in repos containing my project code which will be created in the future. (subject to UCL's assesment guidlines) 
